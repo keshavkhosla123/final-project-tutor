@@ -1,0 +1,86 @@
+<div>
+  <div>
+    <h1>
+      Subjects can teach #<%= @the_subjects_can_teach.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/subjects_can_teaches">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_subjects_can_teach/<%= @the_subjects_can_teach.id %>">
+          Delete subjects can teach
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @the_subjects_can_teach.user_id %>
+      </dd>
+
+      <dt>
+        Subject
+      </dt>
+      <dd>
+        <%= @the_subjects_can_teach.subject_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_subjects_can_teach.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_subjects_can_teach.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit subjects can teach
+    </h2>
+
+    <form action="/modify_subjects_can_teach/<%= @the_subjects_can_teach.id %>"  method="post" >
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_subjects_can_teach.user_id %>">
+      </div>
+
+      <div>
+        <label for="subject_id_box">
+          Subject
+        </label>
+
+        <input type="text" id="subject_id_box" name="query_subject_id" value="<%= @the_subjects_can_teach.subject_id %>">
+      </div>
+
+      <button>
+        Update subjects can teach
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

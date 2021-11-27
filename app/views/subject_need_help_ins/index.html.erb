@@ -1,0 +1,102 @@
+<div>
+  <div>
+    <h1>
+      List of all subject need help ins
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new subject need help in
+    </h2>
+
+    <form action="/insert_subject_need_help_in" method="post">
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id">
+      </div>
+
+      <div>
+        <label for="subject_id_box">
+          Subject
+        </label>
+
+        <input type="text" id="subject_id_box" name="query_subject_id">
+      </div>
+
+      <button>
+        Create subject need help in
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          User
+        </th>
+
+        <th>
+          Subject
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_subject_need_help_ins.each do |a_subject_need_help_in| %>
+      <tr>
+        <td>
+          <%= a_subject_need_help_in.id %>
+        </td>
+
+        <td>
+          <%= a_subject_need_help_in.user_id %>
+        </td>
+
+        <td>
+          <%= a_subject_need_help_in.subject_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_subject_need_help_in.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_subject_need_help_in.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/subject_need_help_ins/<%= a_subject_need_help_in.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

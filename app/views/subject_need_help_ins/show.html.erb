@@ -1,0 +1,86 @@
+<div>
+  <div>
+    <h1>
+      Subject need help in #<%= @the_subject_need_help_in.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/subject_need_help_ins">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_subject_need_help_in/<%= @the_subject_need_help_in.id %>">
+          Delete subject need help in
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @the_subject_need_help_in.user_id %>
+      </dd>
+
+      <dt>
+        Subject
+      </dt>
+      <dd>
+        <%= @the_subject_need_help_in.subject_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_subject_need_help_in.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_subject_need_help_in.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit subject need help in
+    </h2>
+
+    <form action="/modify_subject_need_help_in/<%= @the_subject_need_help_in.id %>"  method="post" >
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_subject_need_help_in.user_id %>">
+      </div>
+
+      <div>
+        <label for="subject_id_box">
+          Subject
+        </label>
+
+        <input type="text" id="subject_id_box" name="query_subject_id" value="<%= @the_subject_need_help_in.subject_id %>">
+      </div>
+
+      <button>
+        Update subject need help in
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

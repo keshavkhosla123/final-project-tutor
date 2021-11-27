@@ -1,0 +1,101 @@
+<div>
+  <div>
+    <h1>
+      Subject #<%= @the_subject.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/subjects">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_subject/<%= @the_subject.id %>">
+          Delete subject
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Subject course num
+      </dt>
+      <dd>
+        <%= @the_subject.subject_course_num %>
+      </dd>
+
+      <dt>
+        Name
+      </dt>
+      <dd>
+        <%= @the_subject.name %>
+      </dd>
+
+      <dt>
+        Prof name
+      </dt>
+      <dd>
+        <%= @the_subject.prof_name %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_subject.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_subject.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit subject
+    </h2>
+
+    <form action="/modify_subject/<%= @the_subject.id %>"  method="post" >
+      <div>
+        <label for="subject_course_num_box">
+          Subject course num
+        </label>
+
+        <input type="text" id="subject_course_num_box" name="query_subject_course_num" value="<%= @the_subject.subject_course_num %>">
+      </div>
+
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name" value="<%= @the_subject.name %>">
+      </div>
+
+      <div>
+        <label for="prof_name_box">
+          Prof name
+        </label>
+
+        <input type="text" id="prof_name_box" name="query_prof_name" value="<%= @the_subject.prof_name %>">
+      </div>
+
+      <button>
+        Update subject
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

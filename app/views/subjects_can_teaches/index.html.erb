@@ -1,0 +1,102 @@
+<div>
+  <div>
+    <h1>
+      List of all subjects can teaches
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new subjects can teach
+    </h2>
+
+    <form action="/insert_subjects_can_teach" method="post">
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id">
+      </div>
+
+      <div>
+        <label for="subject_id_box">
+          Subject
+        </label>
+
+        <input type="text" id="subject_id_box" name="query_subject_id">
+      </div>
+
+      <button>
+        Create subjects can teach
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          User
+        </th>
+
+        <th>
+          Subject
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_subjects_can_teaches.each do |a_subjects_can_teach| %>
+      <tr>
+        <td>
+          <%= a_subjects_can_teach.id %>
+        </td>
+
+        <td>
+          <%= a_subjects_can_teach.user_id %>
+        </td>
+
+        <td>
+          <%= a_subjects_can_teach.subject_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_subjects_can_teach.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_subjects_can_teach.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/subjects_can_teaches/<%= a_subjects_can_teach.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>
