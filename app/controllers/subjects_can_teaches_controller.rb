@@ -19,7 +19,7 @@ class SubjectsCanTeachesController < ApplicationController
 
   def create
     the_subjects_can_teach = SubjectsCanTeach.new
-    the_subjects_can_teach.user_id = params.fetch("query_user_id")
+    the_subjects_can_teach.user_id = session.fetch(:user_id)
     the_subjects_can_teach.subject_id = params.fetch("query_subject_id")
 
     if the_subjects_can_teach.valid?

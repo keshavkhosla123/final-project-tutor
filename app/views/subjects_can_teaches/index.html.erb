@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      List of all subjects can teaches
+      List of all subjects with Tutors!
     </h1>
   </div>
 </div>
@@ -11,21 +11,20 @@
 <div>
   <div>
     <h2>
-      Add a new subjects can teach
+      Add a new subject that YOU can teach
     </h2>
 
     <form action="/insert_subjects_can_teach" method="post">
       <div>
         <label for="user_id_box">
-          User
         </label>
 
-        <input type="text" id="user_id_box" name="query_user_id">
+        <input type="hidden" id="user_id_box" name=session.fetch(:user_id)>
       </div>
 
       <div>
         <label for="subject_id_box">
-          Subject
+          Subject Course Num (e.g. 'Math 151')
         </label>
 
         <input type="text" id="subject_id_box" name="query_subject_id">
@@ -56,11 +55,11 @@
         </th>
 
         <th>
-          Created at
+          Course Num
         </th>
 
         <th>
-          Updated at
+          Created at
         </th>
 
         <th>
@@ -74,15 +73,15 @@
         </td>
 
         <td>
-          <%= a_subjects_can_teach.user_id %>
+          <%= a_subjects_can_teach.user.first_name + " " + a_subjects_can_teach.user.last_name %>
         </td>
 
         <td>
-          <%= a_subjects_can_teach.subject_id %>
+          <%= a_subjects_can_teach.subject.name %>
         </td>
 
         <td>
-          <%= time_ago_in_words(a_subjects_can_teach.created_at) %> ago
+          <%= a_subjects_can_teach.subject.subject_course_num %> 
         </td>
         <td>
           <%= time_ago_in_words(a_subjects_can_teach.updated_at) %> ago

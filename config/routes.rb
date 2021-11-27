@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-
+  # Home Page
+  get("/", {:controller => "subject_need_help_ins", :action => "index"})
 
   # Routes for the User account:
 
