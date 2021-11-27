@@ -4,19 +4,6 @@
       Subjects <%= @the_subjects_can_teach.user.first_name  %> can teach
     </h1>
 
-    <div>
-      <div>
-        <a href="/subjects_can_teaches">
-          Go back
-        </a>
-      </div>
-
-      <div>
-        <a href="/delete_subjects_can_teach/<%= @the_subjects_can_teach.id %>">
-          Delete subjects can teach
-        </a>
-      </div>
-    </div>
 
     <dl>
       <dt>
@@ -32,23 +19,27 @@
         <th>
           Subjects Taught
         </th>
-        <th>
-          Delete Subject
-        </th>
-      </tr>
-      <% @list_of_subjects_user_teaches.each do |sub| %>
-      <tr>
-        <td>
-        <li><%=sub.subject.name%></li>
-        </td>
-        <td>
-        <a href="/delete_subjects_can_teach/<%=sub.id%>"> Delete This Subject </a>
-       
-        </td>
-      <%end%>
+        <%if session.fetch(:user_id) == @the_subjects_can_teach.user.id %>
+          <th>
+              Delete Subject
+            </th>
+        <%end%>
+         <% @list_of_subjects_user_teaches.each do |sub| %>
+        <tr>
+          <td>
+          <%=sub.subject.name%>
+          </td>
+          <%if session.fetch(:user_id) == @the_subjects_can_teach.user.id %>
+            <td>
+            <a href="/delete_subjects_can_teach/<%=sub.id%>"> Delete This Subject </a>
+            </td>
+          <%end%>
+        </tr>
+        <%end%>
+      
 
 
-      </tr>
+      
      
     </dl>
   </div>
