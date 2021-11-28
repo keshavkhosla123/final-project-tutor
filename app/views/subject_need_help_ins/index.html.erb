@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      List of all subject need help ins
+      List of all Subjects Students need help in
     </h1>
   </div>
 </div>
@@ -43,9 +43,6 @@
   <div>
     <table>
       <tr>
-        <th>
-          ID
-        </th>
 
         <th>
           User
@@ -56,11 +53,11 @@
         </th>
 
         <th>
-          Created at
+          Course Num
         </th>
 
         <th>
-          Updated at
+          Created at
         </th>
 
         <th>
@@ -69,23 +66,20 @@
 
       <% @list_of_subject_need_help_ins.each do |a_subject_need_help_in| %>
       <tr>
+
         <td>
-          <%= a_subject_need_help_in.id %>
+          <%= a_subject_need_help_in.user.first_name + " " + a_subject_need_help_in.user.last_name %>
         </td>
 
         <td>
-          <%= a_subject_need_help_in.user_id %>
+          <%= a_subject_need_help_in.subject.name %>
         </td>
 
         <td>
-          <%= a_subject_need_help_in.subject_id %>
+          <%= a_subject_need_help_in.subject.subject_course_num %>
         </td>
-
         <td>
           <%= time_ago_in_words(a_subject_need_help_in.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_subject_need_help_in.updated_at) %> ago
         </td>
 
         <td>

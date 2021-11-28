@@ -11,6 +11,7 @@ class SubjectNeedHelpInsController < ApplicationController
     the_id = params.fetch("path_id")
 
     matching_subject_need_help_ins = SubjectNeedHelpIn.where({ :id => the_id })
+    @list_of_all_subjects_user_needs_help_in=SubjectNeedHelpIn.where(:id=>the_id)
 
     @the_subject_need_help_in = matching_subject_need_help_ins.at(0)
 
