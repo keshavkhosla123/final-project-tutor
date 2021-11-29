@@ -3,6 +3,7 @@
 # Table name: subjects_can_teaches
 #
 #  id         :integer          not null, primary key
+#  num        :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  subject_id :integer

@@ -3,6 +3,7 @@
 # Table name: subject_need_help_ins
 #
 #  id         :integer          not null, primary key
+#  num        :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  subject_id :integer

@@ -27,7 +27,12 @@
           Subject Course Num (e.g. 'Math 151')
         </label>
 
-        <input type="text" id="subject_course_num_box" name="query_subject_subject_id">
+        <input type="text" id="subject_course_num_box" name="query_subject_num">
+
+        <label for="subject_name">
+          Subject name
+        </label>
+        <input type="text" id="subject_name" name="query_subject_name">
       </div>
 
       <button>
@@ -42,9 +47,6 @@
   <div>
     <table>
       <tr>
-        <th>
-          ID
-        </th>
 
         <th>
           User
@@ -68,9 +70,6 @@
 
       <% @list_of_subjects_can_teaches.each do |a_subjects_can_teach| %>
       <tr>
-        <td>
-          <%= a_subjects_can_teach.id %>
-        </td>
 
         <td>
           <%= a_subjects_can_teach.user.first_name + " " + a_subjects_can_teach.user.last_name %>

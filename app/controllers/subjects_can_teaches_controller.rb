@@ -34,8 +34,17 @@ class SubjectsCanTeachesController < ApplicationController
   def create
     the_subjects_can_teach = SubjectsCanTeach.new
     the_subjects_can_teach.user_id = session.fetch(:user_id)
-    the_subjects_can_teach.subject_id = params.fetch("query_subject_subject_id")
-    #the_subjects_can_teach.subject_course_num = params.fetch("query_subject_course_num")
+    user_course_num = params.fetch("query_subject_num").upcase
+    exists_in_subject = Subject.where(:subject_course_num=>user_course_num).at(0)
+    if exists_in_subject != nil
+      the_subjects_can_teach.subject_id = exists_in_subject.id
+    else 
+      new_subject = Subject.new
+      new_subject.subject_course_num = user_course_num.upcase
+      new_subject.name = params.fetch("query_subject_name")
+      new_subject.save
+      the_subjects_can_teach.subject_id = new_subject.id
+    end
 
     if the_subjects_can_teach.valid?
       the_subjects_can_teach.save
