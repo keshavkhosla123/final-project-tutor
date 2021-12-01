@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
       @list_of_subjects.push(subj)
     end
     #subjects user can teach
-    total_info = Array.new
+    @total_info = Array.new
     new_info = Array.new
     @list_of_subjects.each do |a_subj|
       users_who_need_help = SubjectNeedHelpIn.where(:subject_id=>a_subj.id)
@@ -38,14 +38,17 @@ class ApplicationController < ActionController::Base
         users_who_need_help.each do |a_user|
           new_info.push(a_user.user_id)
           new_info.push(a_subj.id)
-          total_info.push(new_info)
+          subject_need_help_in_id_and_user = SubjectNeedHelpIn.where(:subject_id=>a_subj.id).where(:user_id=>a_user.user_id).at(0)
+          new_info.push(subject_need_help_in_id_and_user)
+          @total_info.push(new_info)
           new_info = []
         end
       end
     end
+
       @all_info=Array.new
       new_info2 = Array.new
-      total_info.each do |a_tup|
+      @total_info.each do |a_tup|
         x=a_tup.at(0)
         the_user = User.where(:id=>x).at(0)
         the_user_name = the_user.first_name + " " + the_user.last_name
@@ -57,6 +60,7 @@ class ApplicationController < ActionController::Base
         new_info2.push(the_subject_name)
         new_info2.push(the_subject_num)
         new_info2.push(x)
+        new_info2.push(a_tup.at(2).id)
         @all_info.push(new_info2)
         new_info2=[]
 
@@ -74,6 +78,8 @@ class ApplicationController < ActionController::Base
         users_who_teach.each do |a_user|
           @new_info3.push(a_user.user_id)
           @new_info3.push(a_subj.id)
+          subject_can_teach_id_and_user = SubjectsCanTeach.where(:subject_id=>a_subj.id).where(:user_id=>a_user.user_id).at(0)
+          @new_info3.push(subject_can_teach_id_and_user)
           @total_info2.push(@new_info3)
           @new_info3=[]
         end
@@ -94,6 +100,7 @@ class ApplicationController < ActionController::Base
         new_info4.push(the_subject_name2)
         new_info4.push(the_subject_num2)
         new_info4.push(z)
+        new_info4.push(a_tup.at(2).id)
         @all_info2.push(new_info4)
         new_info4=[]
       end

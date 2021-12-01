@@ -12,5 +12,6 @@
 class SubjectsCanTeach < ApplicationRecord
   belongs_to(:user, { :required => true, :class_name => "User", :foreign_key => "user_id" })
   belongs_to(:subject, { :required => true, :class_name => "Subject", :foreign_key => "subject_id" })
+  
 
 end

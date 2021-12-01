@@ -13,6 +13,20 @@
         <%= @the_subjects_can_teach.user.first_name + " " + @the_subjects_can_teach.user.last_name %>
       </dd>
 
+      <dt>
+        Email
+      </dt>
+      <dd>
+        <%= @the_subjects_can_teach.user.email %>
+      </dd>
+
+      <dt>
+        Bio
+      </dt>
+      <dd>
+        <%= @the_subjects_can_teach.user.bio %>
+      </dd>
+
 
       <table>
       <tr>
@@ -50,7 +64,7 @@
       <th>Review</th>
       <th>Posted</th>
     </tr>
-    <#%@the_subjects_can_teach.user.sender.each do |review|%>
+
     <tr>
       <td>
         debbi
@@ -64,7 +78,7 @@
         2018-05-06 15:13:40 UTC
       </td>
     </tr>
-    <#%end%>
+
     </table>
 
 
