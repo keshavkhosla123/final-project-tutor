@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
   # Home Page
-  get("/", {:controller => "subject_need_help_ins", :action => "index"})
+  get("/", {:controller => "application", :action => "index_homepage"})
+
+  # Details Page for each user
+
+  get("/user_details/:user_id", {:controller=>"application", :action => "show_details"})
 
   # Routes for the User account:
 

@@ -1,0 +1,73 @@
+<h1> Hello, <%=@the_user.first_name%>! </h1>
+
+<div>
+ <h2>Students you can teach</h2>
+<table>
+  <th> 
+  Subject Name
+  </th>
+  <th>
+  Subject Course Num
+  </th>
+  <th>
+  Student Name
+  </th>
+  <th>
+  Show Student Details
+  </th>
+
+
+<%@all_info.each do |info|%>
+  <tr>
+    <td>
+      <%=info.at(1)%>
+    </td>
+    <td>
+      <%=info.at(2)%>
+    </td>    
+    <td>
+      <%=info.at(0)%>
+    </td>
+    <td>
+      <a href="/subject_need_help_ins/<%=info.at(3)%>">Show details</a>
+    </td>
+  </tr>
+<%end%>
+</div>
+<div>
+
+</table>
+
+
+<h2>Students that can teach you </h2>
+<table>
+  <th> 
+  Subject Name
+  </th>
+  <th>
+  Subject Course Num
+  </th>
+  <th>
+  Student Name
+  </th>
+  <th>
+  Show Student Details
+  </th>
+<%@all_info2.each do |info|%>
+  <tr>
+    <td>
+      <%=info.at(1)%>
+    </td>
+    <td>
+      <%=info.at(2)%>
+    </td>    
+    <td>
+      <%=info.at(0)%>
+    </td>
+    <td>
+      <a href="/subjects_can_teaches/<%=info.at(3)%>">Show details</a>
+    </td>
+  </tr>
+<%end%>
+</table>
+</div>

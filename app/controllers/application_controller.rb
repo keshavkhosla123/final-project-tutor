@@ -15,4 +15,91 @@ class ApplicationController < ActionController::Base
     end
   end
 
+
+  def show_details
+    render(:template=>"homepage/user_details.html.erb")
+  end
+
+  def index_homepage
+    the_user_id = session.fetch(:user_id)
+    @the_user = User.where(:id=>the_user_id).at(0)
+    @the_subjects_user_teaches = SubjectsCanTeach.where(:user_id=>the_user_id)
+    @list_of_subjects = Array.new
+    @the_subjects_user_teaches.each do |a_subject|
+      subj = a_subject.subject
+      @list_of_subjects.push(subj)
+    end
+    #subjects user can teach
+    total_info = Array.new
+    new_info = Array.new
+    @list_of_subjects.each do |a_subj|
+      users_who_need_help = SubjectNeedHelpIn.where(:subject_id=>a_subj.id)
+      if users_who_need_help != nil
+        users_who_need_help.each do |a_user|
+          new_info.push(a_user.user_id)
+          new_info.push(a_subj.id)
+          total_info.push(new_info)
+          new_info = []
+        end
+      end
+    end
+      @all_info=Array.new
+      new_info2 = Array.new
+      total_info.each do |a_tup|
+        x=a_tup.at(0)
+        the_user = User.where(:id=>x).at(0)
+        the_user_name = the_user.first_name + " " + the_user.last_name
+        new_info2.push(the_user_name)
+        y=a_tup.at(1)
+        the_subject = Subject.where(:id=>y).at(0)
+        the_subject_name = the_subject.name
+        the_subject_num = the_subject.subject_course_num
+        new_info2.push(the_subject_name)
+        new_info2.push(the_subject_num)
+        new_info2.push(x)
+        @all_info.push(new_info2)
+        new_info2=[]
+
+      end
+    @the_subjects_user_needs_help_in = SubjectNeedHelpIn.where(:user_id=>the_user_id)
+    @list_of_subjects2 = Array.new
+    @the_subjects_user_needs_help_in.each do |a_sub|
+      @list_of_subjects2.push(a_sub.subject)
+    end
+    @total_info2 = Array.new
+    @new_info3 = Array.new
+    @list_of_subjects2.each do |a_subj|
+      users_who_teach = SubjectsCanTeach.where(:subject_id => a_subj.id)
+      if users_who_teach != nil
+        users_who_teach.each do |a_user|
+          @new_info3.push(a_user.user_id)
+          @new_info3.push(a_subj.id)
+          @total_info2.push(@new_info3)
+          @new_info3=[]
+        end
+      end
+    end
+    @all_info2 = Array.new
+    new_info4 = Array.new
+    @total_info2.each do |a_tup|
+      if a_tup.at(0) !=nil
+        z=a_tup.at(0)
+        the_user2 = User.where(:id=>z).at(0)
+        the_user_name2 = the_user2.first_name + " " + the_user2.last_name
+        new_info4.push(the_user_name2)
+        a=a_tup.at(1)
+        the_subject2 = Subject.where(:id=>a).at(0)
+        the_subject_name2 = the_subject2.name
+        the_subject_num2 = the_subject2.subject_course_num
+        new_info4.push(the_subject_name2)
+        new_info4.push(the_subject_num2)
+        new_info4.push(z)
+        @all_info2.push(new_info4)
+        new_info4=[]
+      end
+    end
+
+    render(:template=>"homepage/show.html.erb")
+  end
+
 end
