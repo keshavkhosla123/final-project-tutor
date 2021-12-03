@@ -21,6 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   def index_homepage
+
     the_user_id = session.fetch(:user_id)
     @the_user = User.where(:id=>the_user_id).at(0)
     @the_subjects_user_teaches = SubjectsCanTeach.where(:user_id=>the_user_id)

@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
   # Home Page
-  get("/", {:controller => "application", :action => "index_homepage"})
+  get("/", {:controller => "user_authentication", :action => "sign_up_form"})
+  get("/homepage", {:controller=>"application", :action=>"index_homepage"})
 
   # Details Page for each user
 
