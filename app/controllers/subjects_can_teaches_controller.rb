@@ -36,22 +36,54 @@ class SubjectsCanTeachesController < ApplicationController
     the_subjects_can_teach.user_id = session.fetch(:user_id)
     user_course_num = params.fetch("query_subject_num")
     exists_in_subject = Subject.where(:subject_course_num=>user_course_num).at(0)
-    if exists_in_subject != nil
-      the_subjects_can_teach.subject_id = exists_in_subject.id
-    else 
-      new_subject = Subject.new
-      new_subject.subject_course_num = user_course_num
-      new_subject.name = params.fetch("query_subject_name")
-      new_subject.save
-      the_subjects_can_teach.subject_id = new_subject.id
+
+    num_times_input = SubjectsCanTeach.where(:subject_id=>exists_in_subject.id).where(:user_id=>session.fetch(:user_id)).count
+    if num_times_input == 0
+      validity = 1
+    else
+      validity = 0
     end
 
-    if the_subjects_can_teach.valid?
+
+    if validity == 1 
+    
+      if exists_in_subject == nil 
+          new_subject = Subject.new
+          new_subject.subject_course_num = user_course_num
+          new_subject.name = params.fetch("query_subject_name")
+        
+          new_subject.save
+        
+          the_subjects_can_teach.subject_id = new_subject.id
+      else
+
+        if SubjectNeedHelpIn.where(:subject_id=>exists_in_subject.id).where(:user_id=>session.fetch(:user_id)).count == 0 
+          
+        
+        
+        if exists_in_subject != nil #&& #SubjectNeedHelpIn.where(:subject_id=>exists_in_subject.id).where(:user_id=>session.fetch(:user_id)).count == 0
+
+          the_subjects_can_teach.subject_id = exists_in_subject.id
+        else
+          new_subject = Subject.new
+          new_subject.subject_course_num = user_course_num
+          new_subject.name = params.fetch("query_subject_name")
+        
+          new_subject.save
+        
+          the_subjects_can_teach.subject_id = new_subject.id
+        end
+        end
+      end
+    
+    end
+    if the_subjects_can_teach.valid? && validity == 1
       the_subjects_can_teach.save
       redirect_to("/subjects_can_teaches", { :notice => "Subjects can teach created successfully." })
     else
       redirect_to("/subjects_can_teaches", { :notice => "Subjects can teach failed to create successfully." })
     end
+    
   end
 
   def update

@@ -23,18 +23,38 @@ class SubjectNeedHelpInsController < ApplicationController
     the_subject_need_help_in.user_id = session.fetch(:user_id)
     user_course_num = params.fetch("query_subject_num")
     exists_in_subject=Subject.where(:subject_course_num=>user_course_num).at(0)
-    if exists_in_subject !=nil
-      the_subject_need_help_in.subject_id = exists_in_subject.id
-    else
-      new_subject = Subject.new
-      new_subject.subject_course_num = user_course_num
-      new_subject.name = params.fetch("query_subject_name")
-      new_subject.save
-      the_subject_need_help_in.subject_id = new_subject.id
-    end
-    #the_subject_need_help_in.subject_id = params.fetch("query_subject_num")
 
-    if the_subject_need_help_in.valid?
+    num_times_input = SubjectNeedHelpIn.where(:subject_id=>exists_in_subject.id).where(:user_id=>session.fetch(:user_id)).count
+    if num_times_input == 0
+      validity = 1
+
+    else
+      validity = 0
+    end
+    if validity == 1
+
+      if exists_in_subject == nil
+        new_subject = Subject.new
+        new_subject.subject_course_num = user_course_num
+        new_subject.name = params.fetch("query_subject_name")
+        new_subject.save
+        the_subject_need_help_in.subject_id = new_subject.id
+      else
+        if SubjectsCanTeach.where(:subject_id=>exists_in_subject.id).where(:user_id=>session.fetch(:user_id)).count == 0
+          if exists_in_subject !=nil
+            the_subject_need_help_in.subject_id = exists_in_subject.id
+          else
+            new_subject = Subject.new
+            new_subject.subject_course_num = user_course_num
+            new_subject.name = params.fetch("query_subject_name")
+            new_subject.save
+            the_subject_need_help_in.subject_id = new_subject.id
+          end
+        end
+      end
+    end
+
+    if the_subject_need_help_in.valid? && validity == 1
       the_subject_need_help_in.save
       redirect_to("/subject_need_help_ins", { :notice => "Subject need help in created successfully." })
     else

@@ -21,6 +21,12 @@ class ApplicationController < ActionController::Base
   end
 
   def index_homepage
+    if session.fetch(:user_id) == nil
+      redirect_to("/user_sign_in", { :notice => "You have to sign in first." })
+    else
+
+
+
 
     the_user_id = session.fetch(:user_id)
     @the_user = User.where(:id=>the_user_id).at(0)
@@ -108,6 +114,7 @@ class ApplicationController < ActionController::Base
     end
 
     render(:template=>"homepage/show.html.erb")
+    end
   end
 
 end
