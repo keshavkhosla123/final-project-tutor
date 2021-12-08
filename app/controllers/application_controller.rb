@@ -133,4 +133,18 @@ class ApplicationController < ActionController::Base
     redirect_to("/subjects_can_teaches/#{redirect_id}")
   end
 
+  def post_comment2
+    posting_user = session.fetch(:user_id)
+    reviwed_user = params.fetch("reviewed_user_id_box")
+    redirect_id = params.fetch("redirect_id")
+    comment = params.fetch("query_comment")
+    new_comment = Comment.new
+    new_comment.body = comment
+    new_comment.reviewed_id = reviwed_user
+    new_comment.user_id = posting_user
+    new_comment.save
+    
+    redirect_to("/subject_need_help_ins/#{redirect_id}")
+  end
+
 end

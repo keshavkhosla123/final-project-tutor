@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   # Comment Feature
   post("/post_comment", {:controller=>"application", :action=>"post_comment"})
+  post("/post_comment2", {:controller=>"application", :action=>"post_comment2"})
 
 
   # Home Page

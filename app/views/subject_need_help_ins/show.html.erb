@@ -54,5 +54,43 @@
         </tr>
         <%end%>
       </table>
+<div>
+  <h2> Review of Tutor </h2>
+    
+    <form action="/post_comment2" method="post">
+    
+    <input type="hidden" name="posting_user_id_box" value=<%=session.fetch(:user_id)%>>
+    <label for="comment">
+    <input type="text" id="comment" name="query_comment">
+    <input type="hidden" name="reviewed_user_id_box" value=<%=@the_subject_need_help_in.user.id%>>
+    <input type="hidden" name="redirect_id" value=<%=@the_subject_need_help_in.id%>>
+      <button>
+        Post!
+      </button>
+    </form>
+  </div>
+  <div>
+
+    <table>
+    <tr>
+      <th>Reviewer</th>
+      <th>Review</th>
+
+    </tr>
+    <%@the_subject_need_help_in.user.reviews.each do |a_comment|%>
+    <tr>
+      <td>
+      <%commenter = User.where(:id=>a_comment.user_id).at(0)%>
+      <%=commenter.first_name%>
+      </td>
+      <td>
+      <%=a_comment.body%>
+      </td>
+    </tr>
+    <%end%>
+    </table>
+
+</div>
+
 
 
