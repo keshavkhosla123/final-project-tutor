@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+
+  # Comment Feature
+  post("/post_comment", {:controller=>"application", :action=>"post_comment"})
+
+
   # Home Page
   #get("/", {:controller => "user_authentication", :action => "sign_up_form"})
   get("/", {:controller=>"application", :action=>"index_homepage"})

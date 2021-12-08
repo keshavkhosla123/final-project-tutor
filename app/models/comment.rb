@@ -2,14 +2,15 @@
 #
 # Table name: comments
 #
-#  id         :integer          not null, primary key
-#  body       :text
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  user_id    :integer
+#  id          :integer          not null, primary key
+#  body        :text
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  reviewed_id :integer
+#  user_id     :integer
 #
 class Comment < ApplicationRecord
-  validates(:commenter {:presence=> true})
+  #validates(:commenter {:presence=> true})
    
   def commenter 
     my_user_id = self.user_id
