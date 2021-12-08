@@ -21,5 +21,9 @@ class User < ApplicationRecord
   has_many(:messages_sent, { :class_name => "Message", :foreign_key => "sender_id", :dependent => :destroy })
   has_many(:looking_for_help_subjects, { :through => :subject_need_help_ins, :source => :subject })
   has_many(:interests, { :through => :subject_need_help_ins, :source => :subject })
+  has_many(:reviews, {:class_name =>"Comment", :foreign_key=>"reviewed_id"})
+
+
+
 
 end

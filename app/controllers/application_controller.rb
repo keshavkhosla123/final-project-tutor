@@ -128,6 +128,8 @@ class ApplicationController < ActionController::Base
     new_comment.body = comment
     new_comment.reviewed_id = reviwed_user
     new_comment.user_id = posting_user
+    new_comment.save
+    
     redirect_to("/subjects_can_teaches/#{redirect_id}")
   end
 
