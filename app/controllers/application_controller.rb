@@ -147,4 +147,49 @@ class ApplicationController < ActionController::Base
     redirect_to("/subject_need_help_ins/#{redirect_id}")
   end
 
+  def delete_comment
+    comment_id = params.fetch("id")
+    the_comment = Comment.where(:id=>comment_id).at(0)
+    the_comment.destroy
+    redirect_to("/subjects_can_teaches")
+  end
+
+  def delete_comment2
+    comment_id = params.fetch("id")
+    the_comment = Comment.where(:id=>comment_id).at(0)
+    the_comment.destroy
+    redirect_to("/subject_need_help_ins")
+  end
+
+  def post_bio
+    bio = params.fetch("query_bio")
+    user_id = session.fetch(:user_id)
+    the_user = User.where(:id=>user_id).at(0)
+    the_user.bio = bio
+    the_user.save
+    redirect_to("/")
+  end
+
+  def edit_comment
+    @the_comment = Comment.where(:id=>params.fetch("id")).at(0)
+    render({:template=>"subjects_can_teaches/edit_comment.html.erb"})
+  end
+
+  def save_comment
+    posting_user = session.fetch(:user_id)
+    
+    comment = params.fetch("query_comment")
+    id=params.fetch("id")
+    new_comment = Comment.where(:id=>id).at(0)
+    new_comment.body = comment
+    
+    new_comment.user_id = posting_user
+    new_comment.save
+    redirect_to("/subjects_can_teaches")
+    
+  end
+
+
+
+
 end

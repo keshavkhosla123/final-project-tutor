@@ -77,6 +77,7 @@
     <tr>
       <th>Reviewer</th>
       <th>Review</th>
+      
 
     </tr>
     <%@the_subjects_can_teach.user.reviews.each do |a_comment|%>
@@ -88,6 +89,14 @@
       <td>
       <%=a_comment.body%>
       </td>
+      <%if a_comment.user_id == session.fetch(:user_id)%>
+        <td>
+          <a href="/delete_comment/<%=a_comment.id%>">Delete Comment</a>
+        </td>
+        <td>
+          <a href="/edit_comment/<%=a_comment.id%>">Edit Comment</a>
+        </td>
+      <%end%>
     </tr>
     <%end%>
     </table>

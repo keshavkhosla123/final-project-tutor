@@ -1,5 +1,18 @@
 <h1> Hello, <%=@the_user.first_name%>! </h1>
 
+<h2> Bio </h2>
+ <form action="/post_bio" method="post">
+    
+    <input type="hidden" name="posting_user_id_box" value=<%=session.fetch(:user_id)%>>
+    <label for="bio">
+    <input type="text" id="bio" name="query_bio">
+      <button>
+        Update!
+      </button>
+    </form>
+
+<h3> Your Bio </h3>
+  <%=@the_user.bio%>
 <div>
  <h2>Students you can teach</h2>
 <table>
