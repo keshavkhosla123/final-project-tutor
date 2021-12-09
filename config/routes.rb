@@ -4,12 +4,12 @@ Rails.application.routes.draw do
   post("/post_bio", {:controller=>"application", :action=>"post_bio"})
 
   # Comment Feature
-  post("/post_comment", {:controller=>"application", :action=>"post_comment"})
-  post("/post_comment2", {:controller=>"application", :action=>"post_comment2"})
-  get("/delete_comment/:id", {:controller=>"application", :action=>"delete_comment"})
-  get("/delete_comment2/:id", {:controller=>"application", :action=>"delete_comment2"})
-  get("/edit_comment/:id", {:controller=>"application", :action=>"edit_comment"})
-  post("/save_edit_comment/:id", {:controller=>"application", :action=>"save_comment"})
+  #post("/post_comment", {:controller=>"application", :action=>"post_comment"})
+  #post("/post_comment2", {:controller=>"application", :action=>"post_comment2"})
+  #get("/delete_comment/:id", {:controller=>"application", :action=>"delete_comment"})
+  #get("/delete_comment2/:id", {:controller=>"application", :action=>"delete_comment2"})
+  #get("/edit_comment/:id", {:controller=>"application", :action=>"edit_comment"})
+  #post("/save_edit_comment/:id", {:controller=>"application", :action=>"save_comment"})
 
 
   # Home Page
