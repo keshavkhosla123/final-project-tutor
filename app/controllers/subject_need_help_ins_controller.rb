@@ -24,12 +24,16 @@ class SubjectNeedHelpInsController < ApplicationController
     user_course_num = params.fetch("query_subject_num")
     exists_in_subject=Subject.where(:subject_course_num=>user_course_num).at(0)
 
-    num_times_input = SubjectNeedHelpIn.where(:subject_id=>exists_in_subject.id).where(:user_id=>session.fetch(:user_id)).count
-    if num_times_input == 0
-      validity = 1
+    if exists_in_subject != nil
+      num_times_input = SubjectNeedHelpIn.where(:subject_id=>exists_in_subject.id).where(:user_id=>session.fetch(:user_id)).count
+      if num_times_input == 0
+        validity = 1
 
+      else
+        validity = 0
+      end
     else
-      validity = 0
+      validity = 1
     end
     if validity == 1
 
@@ -56,9 +60,9 @@ class SubjectNeedHelpInsController < ApplicationController
 
     if the_subject_need_help_in.valid? && validity == 1
       the_subject_need_help_in.save
-      redirect_to("/subject_need_help_ins", { :notice => "Subject need help in created successfully." })
+      redirect_to("/subject_need_help_ins", { :notice => "Subject created successfully." })
     else
-      redirect_to("/subject_need_help_ins", { :notice => "Subject need help in failed to create successfully." })
+      redirect_to("/subject_need_help_ins", { :notice => "Subject failed to create successfully." })
     end
   end
 

@@ -37,11 +37,15 @@ class SubjectsCanTeachesController < ApplicationController
     user_course_num = params.fetch("query_subject_num")
     exists_in_subject = Subject.where(:subject_course_num=>user_course_num).at(0)
 
-    num_times_input = SubjectsCanTeach.where(:subject_id=>exists_in_subject.id).where(:user_id=>session.fetch(:user_id)).count
-    if num_times_input == 0
-      validity = 1
+    if exists_in_subject != nil
+      num_times_input = SubjectsCanTeach.where(:subject_id=>exists_in_subject.id).where(:user_id=>session.fetch(:user_id)).count
+      if num_times_input == 0
+        validity = 1
+      else
+        validity = 0
+      end
     else
-      validity = 0
+      validity = 1
     end
 
 
@@ -79,9 +83,9 @@ class SubjectsCanTeachesController < ApplicationController
     end
     if the_subjects_can_teach.valid? && validity == 1
       the_subjects_can_teach.save
-      redirect_to("/subjects_can_teaches", { :notice => "Subjects can teach created successfully." })
+      redirect_to("/subjects_can_teaches", { :notice => "Subjects created successfully." })
     else
-      redirect_to("/subjects_can_teaches", { :notice => "Subjects can teach failed to create successfully." })
+      redirect_to("/subjects_can_teaches", { :notice => "Subjects failed to create successfully." })
     end
     
   end
