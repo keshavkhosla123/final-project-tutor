@@ -34,14 +34,12 @@
   <body>
   <nav>
   <ul>
+    <% if session.fetch(:user_id) != nil%>
     <li> <a href="/">Home </a></li>
     <li><a href="/subjects_can_teaches">Subjects you can teach!</a>
     <li><a href="/subject_need_help_ins"> Subjects you need help in! </a> </li>
-    <% if session.fetch(:user_id)==nil%>
-      <li><a href ="/user_sign_up"> Sign up! </a></li>
-      <li><a href ="/user_sign_in"> Sign in! </a></li>
-    <% else %>
-      <li><a href ="/user_sign_out"> Sign out! </a></li>
+    <li><a href ="/user_sign_out"> Sign out! </a></li>
+      
     <%end%>
     </ul>
     </nav>
