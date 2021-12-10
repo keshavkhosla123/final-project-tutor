@@ -55,7 +55,7 @@
 
     </dl>
   </div>
-</div>
+ </div>
 
 <div>
 <h2> Review of Tutor </h2>
@@ -90,7 +90,7 @@
       <td>
       <%=a_comment.body%>
       </td>
-      <%if a_comment.user_id == session.fetch(:user_id)%>
+     <%if a_comment.user_id == session.fetch(:user_id)%>
         <td>
           <a href="/delete_comment/<%=a_comment.id%>">Delete Comment</a>
         </td>
