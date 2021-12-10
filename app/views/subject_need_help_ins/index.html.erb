@@ -1,3 +1,4 @@
+<% if session.fetch(:user_id) != nil%>
 <div>
   <div>
     <h1>
@@ -100,5 +101,7 @@
     </table>
   </div>
 </div>
-
+  <%else%>
+    <a href="/user_sign_in">You must sign in first </a>
+  <%end%>
 <hr>

@@ -1,4 +1,5 @@
 <div>
+<% if session.fetch(:user_id) != nil%>
   <div>
     <h1>
       List of all subjects with Tutors!
@@ -96,5 +97,7 @@
     </table>
   </div>
 </div>
-
+  <%else%>
+    <a href="/user_sign_in">You must sign in first </a>
+  <%end%>
 <hr>

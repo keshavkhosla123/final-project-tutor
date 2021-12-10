@@ -112,7 +112,7 @@ Rails.application.routes.draw do
   # READ
   get("/subjects", { :controller => "subjects", :action => "index" })
   
-  get("/subjects/:path_id", { :controller => "subjects", :action => "show" })
+  #get("/subjects/:path_id", { :controller => "subjects", :action => "show" })
   
   # UPDATE
   

@@ -1,3 +1,5 @@
+<% if session.fetch(:user_id) != nil%>
+
 <form action="/save_edit_comment/<%=@the_comment.id%>" method="post">
     
     <input type="hidden" name="posting_user_id_box" value=<%=session.fetch(:user_id)%>>
@@ -8,3 +10,7 @@
         Post!
       </button>
     </form>
+
+      <%else%>
+    <a href="/user_sign_in">You must sign in first </a>
+  <%end%>
